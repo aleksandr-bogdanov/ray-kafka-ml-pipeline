@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "ray-kafka-ml-pipeline"
+version = "0.1.0"
+description = "Distributed ML pipeline using Ray, Kafka, and Kubernetes"
+authors = ["Aleksandr Bogdanov <alex@bogdanov.wtf>"]
+packages = [
+    { include = "producer", from = "src" },
+    { include = "consumer", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+structlog = "^25.1.0"
+tenacity = "^9.0.0"
+pydantic = "^2.10.6"
+
+
+torch = "^2.5.1"
+torchvision = "^0.20.1"
+boto3 = "^1.36.6"
+tqdm = "^4.67.1"
+pillow = "^11.1.0"
+ray = {extras = ["default"], version = "^2.41.0"}
+transformers = "^4.48.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.3.4"
+black = "^24.10.0"
+isort = "^5.13.2"
+flake8 = "^7.1.1"
+
+[tool.poetry.scripts]
+produce = "producer.produce:main"
+consume = "consumer.consume:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
